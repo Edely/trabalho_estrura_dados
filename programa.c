@@ -104,19 +104,19 @@ void libera_guiche(Guiche *pi){
     }
 }
 
-
-
-
 int main(){
 
 	int CPF, CPFT, N, i, valor;
     char temp;
     char operacao;
+    /* Fila* fi; fila de clientes */
     i = 0;
 
     /*le numero de operacoes*/
     scanf("%d", &N);
 
+    /*cria fila de clientes
+    fi = cria_fila(); */
 
     while(i<N){
         /* t_cliente cl;*/
@@ -124,15 +124,14 @@ int main(){
         scanf("%c", &temp);
         scanf("%i %i %c %i", &CPF, &CPFT, &operacao, &valor);
         
+        
         /*
         
         cl.CPF = CPF;
         cl.CPF_terceiro = CPFT;
         cl.valor = valor;
         cl.operacao = operacao;
-
-
-        
+       
         printf("Cliente nº: %i\n", i);
         printf("CPF nº %i\n", cl.CPF);
         printf("CPF de Terceiro nº %i\n", cl.CPF_terceiro);
