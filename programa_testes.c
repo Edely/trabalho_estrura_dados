@@ -148,20 +148,12 @@ int main(){
        
 
         insere_fila(fi, cl);
-        imprime_fila(fi);
-        remove_fila(fi);
 
-        /*
-        printf("Cliente nº: %i\n", i);
-        printf("CPF nº %i\n", cl.CPF);
-        printf("CPF de Terceiro nº %i\n", cl.CPF_terceiro);
-        printf("Operacao do tipo %c:\n", cl.operacao);
-        printf("Valor da operacao %i:\n", cl.valor);
-        printf("\n");
-        */
-        
         i++;  
     } 
+    
+    imprime_fila(fi);
+    remove_fila(fi);
 	
 	return 0;
 }

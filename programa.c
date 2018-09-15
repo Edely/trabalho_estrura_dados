@@ -67,6 +67,7 @@ int insere_fila(Fila *fi, struct cliente al){
         fi->final->prox = no;
     }
     fi->final = no;
+    free(no);
     return 1;
 }
 
@@ -130,7 +131,7 @@ int imprime_fila(Fila *fi){
 
 int main(){
 
-	int CPF, CPFT, N, i, valor;
+	int CPF, CPFT, N, i, valor, M;
     char temp;
     char operacao;
     Fila* fi; /* fila de clientes */
@@ -159,9 +160,12 @@ int main(){
 
         /* insere na fila*/
         insere_fila(fi, cl);       
-        
         i++;  
     } 
+
+    M = 3;
+    printf("%i\n", M);
+
     imprime_fila(fi);
     remove_fila(fi);
 	
