@@ -63,6 +63,22 @@ int insere_pilha(Pilha *pi, struct aluno al){
     return 1;
 }
 
+int remocao_pilha(Pilha *pi){
+    if(pi == NULL) return 0;
+    if((*pi) == NULL) return 0;
+    Elem *no = *pi;
+    *pi = no->prox;
+    free(no);
+    return 1;
+}
+
+int consulta_topo_pilha(Pilha *pi, struct aluno *al){
+    if(pi == NULL) return 0;
+    if((*pi) == NULL) return 0;
+    *al = (*pi)->dados;
+    return 1;
+}
+
 int main(){
 
     Pilha *pi;
