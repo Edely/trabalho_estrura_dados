@@ -52,6 +52,17 @@ int main(int argc, char *argv[]){
     Fila *g1 = cria_fila();
     Fila *g2 = cria_fila();
     Fila *g3 = cria_fila();
+
+    /*
+    struct cliente selina;
+    selina.CPF = 0;    
+    selina->CPF_terceiro = 1;
+    selina->valor = 7;
+    selina->operacao = "d";
+    
+    printf("%i\n", selina.CPF);
+    */
+   
     /*
     while(i<N){
         scanf("%c", &temp);
