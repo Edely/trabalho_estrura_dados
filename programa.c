@@ -2,13 +2,34 @@
 
 struct cliente{
     int CPF;
-    char operacao[1];
+    char *operacao;
     int valor;
     int CPF_terceiro;
     struct cliente *proximo;
 };
 
+//o guiche eh uma fila
+struct guiche{
+    int n_operacoes;
+    struct cliente *inicio;
+    struct cliente *final;
+};
+
 typedef struct cliente t_cliente;
+typedef struct guiche t_guiche;
+
+typedef struct guiche Fila;
+
+
+Fila* cria_fila(){
+    Fila* fi = (Fila*) malloc(sizeof(Fila));
+    if(fi != NULL){
+        fi->final = NULL;
+        fi->inicio = NULL;
+        return 0;
+    }
+    return fi;
+}
 
 int main(int argc, char *argv[]){
 	int CPF, CPFT, N, i, valor;
@@ -21,21 +42,33 @@ int main(int argc, char *argv[]){
 
     //criar lista circular pra guardar guiches
 
+    Fila *g1 = cria_fila();
+    Fila *g2 = cria_fila();
+    Fila *g3 = cria_fila();
+    /*
     while(i<N){
         scanf("%c", &temp);
         scanf("%i %i %c %i", &CPF, &CPFT, &operacao, &valor);
 
-        //checa se valores foram inseridos
-        if(CPF != NULL && CPFT != NULL && operacao != NULL && valor != NULL){
+        t_cliente* cl;
+        cl->CPF = CPF;
+        cl->CPF_terceiro = CPFT;
+        cl->valor = valor;
+        cl->operacao = operacao;
 
-            t_cliente *cl = (t_cliente*) malloc(sizeof(t_cliente));
+        printf("Cliente nº %i:\n", i);
+        printf("CPF nº %i:\n", cl->CPF);
+        printf("CPF de Terceiro nº %i:\n", cl->CPF_terceiro);
+        printf("Operacao do tipo %c:\n", cl->operacao);
+        printf("Valor da operacao %i:\n", cl->valor);
 
-            i++;
-        }
+        printf("\n");
 
+        i++;
         //printf("%d %d %c %d\n", CPF, CPFT, operacao, valor);
         
-    }    
+    } 
+    */   
 	
 	return 0;
 }

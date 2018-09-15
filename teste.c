@@ -13,8 +13,6 @@ int main(int argc, char *argv[]){
     while(i<N){
         scanf("%c", &temp);
         scanf("%i %i %c %i", &CPF, &CPFT, &operacao, &valor);
-
-
         printf("%d %d %c %d\n", CPF, CPFT, operacao, valor);
         i++;
     }    
