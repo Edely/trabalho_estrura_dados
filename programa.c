@@ -67,7 +67,6 @@ int insere_fila(Fila *fi, struct cliente al){
         fi->final->prox = no;
     }
     fi->final = no;
-    free(no);
     return 1;
 }
 
