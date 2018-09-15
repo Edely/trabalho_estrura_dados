@@ -42,14 +42,14 @@ void libera_guiche(Guiche *pi){
 }
 
 int main(int argc, char *argv[]){
-
+    printf("aaa");
     struct cliente *selina;
     selina->CPF = 0;
     selina->CPF_terceiro = 1;
     selina->valor = 7;
-    selina->operacao = 'd';
-
+    selina->operacao = "d";
     
+    printf("%i\n", selina->CPF);
 	
 	return 0;
 }
