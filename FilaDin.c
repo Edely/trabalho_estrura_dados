@@ -26,7 +26,6 @@ Fila* cria_fila(){
     if(fi != NULL){
         fi->final = NULL;
         fi->inicio = NULL;
-        return 0;
     }
     return fi;
 }
