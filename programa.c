@@ -105,6 +105,8 @@ void libera_guiche(Guiche *pi){
 
 int imprime_fila(Fila *fi){
     Elem *no;
+    int count;
+    count = 1;
     if(fi == NULL){
         return 0;
     } 
@@ -114,8 +116,14 @@ int imprime_fila(Fila *fi){
         no = fi->inicio;
     }
     while(no != NULL){
-        printf("%i\n", no->dados.CPF);
+        printf("Cliente numero: %i\n", count);
+        printf("Cpf: %i\n", no->dados.CPF);
+        printf("Cpf do destinatario: %i\n", no->dados.CPF_terceiro);
+        printf("Valor %i\n", no->dados.valor);
+        printf("Operacao %c\n", no->dados.operacao);
+        printf("\n");
         no = no->prox;
+        count++;
     }
     return 0;
 }
@@ -135,33 +143,27 @@ int main(){
     fi = cria_fila();
 
     while(i<N){
-        t_cliente cl;
         
+        /* cria o cliente */
+        t_cliente cl;
         scanf("%c", &temp);
+
+        /* le os dados */
         scanf("%i %i %c %i", &CPF, &CPFT, &operacao, &valor);
         
-        
+        /* adiciona dados */
         cl.CPF = CPF;
         cl.CPF_terceiro = CPFT;
         cl.valor = valor;
         cl.operacao = operacao;
-       
 
-        insere_fila(fi, cl);
-        imprime_fila(fi);
-        remove_fila(fi);
-
-        /*
-        printf("Cliente nº: %i\n", i);
-        printf("CPF nº %i\n", cl.CPF);
-        printf("CPF de Terceiro nº %i\n", cl.CPF_terceiro);
-        printf("Operacao do tipo %c:\n", cl.operacao);
-        printf("Valor da operacao %i:\n", cl.valor);
-        printf("\n");
-        */
+        /* insere na fila*/
+        insere_fila(fi, cl);       
         
         i++;  
     } 
+    imprime_fila(fi);
+    remove_fila(fi);
 	
 	return 0;
 }
