@@ -151,9 +151,10 @@ int main(){
 
         i++;  
     } 
-    
-    imprime_fila(fi);
-    remove_fila(fi);
+
+
+        imprime_fila(fi);
+        remove_fila(fi);
 	
 	return 0;
 }

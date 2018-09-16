@@ -9,3 +9,14 @@
 40913 1229 d 4
 433 6729 t 3
 39 65423 s 13
+
+ if(count % M == 1){
+            insere_guiche(g1, no->dados);
+            /* printf("guiche 1\n");*/
+        }else if(count % M == 2){
+            insere_guiche(g2, no->dados);
+            /*printf("guiche 2\n");*/
+        }else if(count % M == 0){
+            insere_guiche(g3, no->dados);
+            /*printf("guiche 3\n");*/
+        }

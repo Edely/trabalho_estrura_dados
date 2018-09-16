@@ -24,7 +24,7 @@ struct fila{
 /*uma fila de clientes */
 typedef struct fila Fila;
 
-/*o guiche eh uma pilha*/
+/*o guiche eh uma Pilha*/
 typedef struct elemento* Guiche;
 
 /* type para cliente */
@@ -103,6 +103,30 @@ void libera_guiche(Guiche *pi){
     }
 }
 
+int insere_guiche(Guiche* pi, struct cliente al){
+    Elem *no = (Elem*) malloc(sizeof(Elem));
+    if(pi == NULL) return 0;    
+    if(no == NULL) return 0;
+    no->dados = al;
+    no->prox = (*pi);
+    *pi = no;
+    return 1;
+}
+
+int relatorio_guiche(Guiche* gi, int count){
+    Elem *no;
+    no = *gi;
+    printf("Guiche %i\n", count);
+    if(gi == NULL) return 0;
+    if(no == NULL) return 0;        
+    while(no != NULL){
+        printf("%i %i %c %i\n", no->dados.CPF, no->dados.CPF_terceiro, no->dados.operacao, no->dados.valor);
+        no = no->prox;
+    }
+    printf("\n");
+    return 1;
+}
+
 int imprime_fila(Fila *fi){
     Elem *no;
     int count;
@@ -128,12 +152,42 @@ int imprime_fila(Fila *fi){
     return 0;
 }
 
+int percorre_fila_adiciona_no_guiche(Fila *fi, int M, Guiche* g1, Guiche* g2, Guiche* g3){
+    Elem *no;
+    int count;
+    count = 1;
+    if(fi == NULL){
+        return 0;
+    } 
+    if(fi->inicio == NULL){
+        return 0;
+    }else{
+        no = fi->inicio;
+    }
+    while(no != NULL){
+
+        if(count % M == 1){
+            insere_guiche(g1, no->dados);
+        }else if(count % M == 2){
+            insere_guiche(g2, no->dados);
+        }else{
+            insere_guiche(g3, no->dados);
+        }
+        no = no->prox;
+        count++;
+    }
+    return 0;
+}
+
 int main(){
 
 	int CPF, CPFT, N, i, valor, M;
     char temp;
     char operacao;
     Fila* fi; /* fila de clientes */
+    Guiche* g1;
+    Guiche* g2;
+    Guiche* g3; /* guiches */
     i = 0;
 
     /*le numero de operacoes*/
@@ -161,11 +215,22 @@ int main(){
         insere_fila(fi, cl);       
         i++;  
     } 
+    /*imprime_fila(fi);*/
 
     M = 3;
+    g1 = cria_guiche();
+    g2 = cria_guiche();
+    g3 = cria_guiche();
+
+    percorre_fila_adiciona_no_guiche(fi, M, g1, g2, g3);
+
+    printf("-:| RELATÓRIO PARCIAL |:-\n");
     printf("%i\n", M);
 
-    imprime_fila(fi);
+    relatorio_guiche(g1, 1);
+    relatorio_guiche(g2, 2);
+    relatorio_guiche(g3, 3);
+
     remove_fila(fi);
 	
 	return 0;
