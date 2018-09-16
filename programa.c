@@ -45,7 +45,20 @@ Lista* cria_lista(){
     return li;
 }
 
-int insere_na_lista(Lista *li, Guiche* g){
+int tamanho_lista_guiche(Lista *li){
+    int count = 0;
+    Elem *no = *li;
+    if(li == NULL || (*li) == NULL){
+        return 0;
+    }
+    do{
+        count++;
+        no = no->prox;
+    }while(no != (*li));
+    return count;
+}
+
+int insere_guiche_na_lista(Lista *li, Guiche* g){
     Guiche* no = (Guiche*) malloc(sizeof(Guiche));
     if(li == NULL) return 0;    
     if(no == NULL) return 0;
@@ -62,7 +75,6 @@ int insere_na_lista(Lista *li, Guiche* g){
     }
     return 1;
 }
-
 
 
 /* funcoes para fila */
@@ -210,16 +222,64 @@ int percorre_fila_adiciona_no_guiche(Fila *fi, int M, Guiche* g1, Guiche* g2, Gu
     return 0;
 }
 
+int percorre_fila_adiciona_no_guiche_dinamica(Fila *fi, Lista *li){
+    Elem *no;
+    Elem *g;
+    int count;
+    int count_guiche;
+    int M = 3;
+    count = 1;
+    count_guiche = 1;
+    if(fi == NULL || li == NULL){
+        return 0;
+    } 
+    if(fi->inicio == NULL){
+        return 0;
+    }else{
+        no = fi->inicio;
+    }
+    while(no != NULL){
+        count_guiche = 1;
+        g = *li;
+        if(count % M == 1){
+            /* escolhe o guiche 1 */
+            g = *li;
+            
+        }else if(count % M == 2){
+            /* escolhe o guiche 2 */
+            while(count_guiche != 2){
+                g = g->prox;
+                count_guiche++;
+            }
+        }else{
+            /* escolhe o guiche 3 */
+            while(count_guiche != 3){
+                g = g->prox;
+                count_guiche++;
+            }
+        }
+        /* insere o no no guiche selecionado */
+        insere_guiche(g, no->dados);
+        no = no->prox;
+        count++;
+    }
+    return 0;
+}
+
 int main(){
 
-	int CPF, CPFT, N, i, valor, M;
+	int CPF, CPFT, N, i, valor;
     char temp;
     char operacao;
     Fila* fi; /* fila de clientes */
     Guiche* g1;
     Guiche* g2;
     Guiche* g3; /* guiches */
+    Lista* li; /* lista de guiches */
     i = 0;
+
+    li = cria_lista();
+
 
     /*le numero de operacoes*/
     scanf("%d", &N);
@@ -247,12 +307,16 @@ int main(){
         i++;  
     } 
     /*imprime_fila(fi);*/
-
-    M = 3;
     g1 = cria_guiche();
     g2 = cria_guiche();
     g3 = cria_guiche();
+    
+    insere_guiche_na_lista(li, g1);
+    insere_guiche_na_lista(li, g2);
+    insere_guiche_na_lista(li, g3);
 
+    /* 
+    
     percorre_fila_adiciona_no_guiche(fi, M, g1, g2, g3);
 
     printf("-:| RELATÓRIO PARCIAL |:-\n");
@@ -261,6 +325,8 @@ int main(){
     relatorio_guiche(g1, 1);
     relatorio_guiche(g2, 2);
     relatorio_guiche(g3, 3);
+
+     */
 
     remove_fila(fi);
 	
