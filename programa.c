@@ -33,6 +33,38 @@ typedef struct cliente t_cliente;
 /*elemento da pilha*/
 typedef struct elemento Elem;
 
+/* lista de guiches*/
+typedef struct elemento *Lista;
+
+
+/* funcoes para lista de guiches */
+Lista* cria_lista(){
+    Lista* li = (Lista*) malloc(sizeof(Lista));
+    if(li != NULL)
+        *li = NULL;
+    return li;
+}
+
+int insere_na_lista(Lista *li, Guiche* g){
+    Guiche* no = (Guiche*) malloc(sizeof(Guiche));
+    if(li == NULL) return 0;    
+    if(no == NULL) return 0;
+    *no = *g;
+    if((*li) == NULL){
+        *li = *no;
+        (*no)->prox = *no;
+    }else{
+        Elem *aux = *li;
+        while(aux->prox != (*li))
+            aux = aux->prox;
+        aux->prox = *no;
+        (*no)->prox = *li;
+    }
+    return 1;
+}
+
+
+
 /* funcoes para fila */
 Fila* cria_fila(){
     Fila* fi = (Fila*) malloc(sizeof(Fila));
@@ -74,8 +106,7 @@ int remove_fila(Fila *fi){
     Elem *no = fi->inicio;
     if(fi == NULL) return 0;
     if(fi->inicio == NULL)
-        return 0;
-    
+        return 0;    
     fi->inicio = fi->inicio->prox;
     if(fi->inicio == NULL)
         fi->final = NULL;                
